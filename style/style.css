@@ -1,0 +1,9 @@
+body {
+    background-color: rgb(43, 43, 54);
+  }
+  .clock {
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 200px;
+  }
