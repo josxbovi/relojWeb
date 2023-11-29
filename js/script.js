@@ -1,12 +1,23 @@
-function updateClock() {
-    var now = new Date();
-    var day = now.toLocaleDateString('es-AR', { weekday: 'long' });
-    var date = now.toLocaleDateString('es-AR', { month: 'long', day: 'numeric', year: 'numeric' });
-    var time = now.toLocaleTimeString('es-AR', { hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+function actualizarReloj() {
+  let reloj = document.getElementById("reloj");
+  let n = new Date();
 
-    document.getElementById('day').textContent = day;
-    document.getElementById('date').textContent = date;
-    document.getElementById('time').textContent = time;
-  }
+  let hora = n.getHours();
+  let minutos = n.getMinutes();
+  let segundos = n.getSeconds();
+  let ampm = hora >= 12 ? "PM" : "AM";
 
-  setInterval(updateClock, 1000);
+  hora = hora % 12;
+  hora = hora ? hora : 12;
+  minutos = minutos < 10 ? "0" + minutos : minutos;
+  segundos = segundos < 10 ? "0" + segundos : segundos;
+
+  let dia = n.toLocaleDateString(undefined, { weekday: "long" });
+  let tiempo = hora + ":" + minutos + ":" + segundos + " " + ampm;
+  
+  let fecha = n.toLocaleDateString(undefined, { month: "long", day: "numeric", year: "numeric" });
+
+  reloj.innerHTML = dia + " " + fecha + "<br>" + tiempo;
+}
+
+setInterval(actualizarReloj, 1000);
